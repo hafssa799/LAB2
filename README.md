@@ -5,8 +5,6 @@
 
 Dans cette étape, j’ai démarré un AVD via Android Studio et vérifié qu’il est bien détecté par ADB.
 
-![](https://github.com/user-attachments/assets/f049a6ba-ce66-4f01-9d65-d9af600b4c9b)
-
 ![](https://github.com/user-attachments/assets/4f334df2-b283-434d-8f07-495d4ce03b64)
 
  La commande adb shell id affiche uid=0(root), ce qui confirme que l’émulateur fonctionne avec des privilèges root.
