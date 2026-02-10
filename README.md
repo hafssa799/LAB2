@@ -12,19 +12,20 @@ Cela permet d’observer l’impact du root sur la sécurité du système Androi
 
 # Étape 2 : Fiche périmètre
 
-Cette fiche définit clairement le cadre du test afin d’éviter toute ambiguïté.
-L’application testée est une application de démonstration (Hello Android).
-Le support utilisé est un AVD (émulateur Android).
-L’objectif est de comprendre le rooting et ses impacts sur la sécurité.
-Les données utilisées sont fictives et le réseau est un réseau de test.
+Cette étape consiste à définir clairement le périmètre du test afin d’éviter toute ambiguïté ou mauvaise interprétation des résultats.
+L’application testée est une application de démonstration intitulée Hello Android.
+Le support utilisé est un AVD (Android Virtual Device), et l’objectif principal est de comprendre le fonctionnement du rooting ainsi que ses impacts sur la sécurité Android.
+
+Les données utilisées sont entièrement fictives et les tests sont réalisés sur un réseau de test, garantissant ainsi un cadre sécurisé et sans conséquences réelles.
  
 ![](https://github.com/user-attachments/assets/498e52af-7d9a-4e0f-ae85-b6d11a86b260)
 
 # Étape 3 : Démarrer un AVD propre
 
-Un AVD propre a été démarré depuis le gestionnaire de périphériques d’Android Studio.
-Aucun compte personnel ni application externe n’est présent sur l’émulateur.
-Cette étape est importante pour garantir des résultats fiables et éviter toute interférence avec d’anciens tests.
+Un AVD propre a été lancé depuis le gestionnaire de périphériques d’Android Studio.
+Aucun compte personnel ni application externe n’a été configuré sur l’émulateur.
+
+Cette étape est essentielle pour garantir la fiabilité des résultats, car elle permet d’éviter toute interférence avec des configurations ou des tests précédents.
 
 ![](https://github.com/user-attachments/assets/6e965d24-74a4-4e5b-96bc-b942b760cf33)
 
@@ -32,42 +33,53 @@ Cette étape est importante pour garantir des résultats fiables et éviter tout
 
 # Étape 4 : Installer et lancer l’app
 
-L’application a été installée sur l’AVD à l’aide de la commande adb install app-debug.apk.
+L’application a été installée sur l’AVD à l’aide de la commande suivante :
+adb install app-debug.apk
 L’installation s’est terminée avec succès.
-L’application se lance correctement et affiche l’écran principal avec le message Hello Android!.
-Cela confirme que l’environnement de test fonctionne correctement.
+Après le lancement de l’application, l’écran principal s’affiche correctement avec le message Hello Android!, ce qui confirme que l’environnement de test est fonctionnel et correctement configuré.
 
 ![](https://github.com/user-attachments/assets/27549cf6-abd4-49c8-9d72-5541fc745a6a)
 
 ![](https://github.com/user-attachments/assets/f9d98641-080a-4226-9a3a-c850190a725b)
 
-# Étape 5 : Faire 3 scénarios simples
+# Étape 5 : Réalisation de trois scénarios simples
 
-# Scénario 1 : Ouvre l’écran d’accueil.
+# Scénario 1 : Ouverture de l’écran d’accueil
+
+L’application démarre correctement et affiche l’écran d’accueil sans erreur.
 
 ![](https://github.com/user-attachments/assets/871fc1ce-994f-4d67-b8f6-3859706f6820)
 
-# Scénario 2 : Cherche un item dans l’app.
+# Scénario 2 : Recherche d’un item dans l’application
+
+Une recherche est effectuée à l’intérieur de l’application. Les résultats s’affichent correctement, ce qui montre que la fonctionnalité de recherche fonctionne comme prévu.
 
 ![](https://github.com/user-attachments/assets/67c3a9b1-029f-4eb0-bb32-01e72a2e0162)
 
 ![](https://github.com/user-attachments/assets/f50e29bf-3817-4e57-bb26-253f7aa2c723)
 
-# Scénario 3 : Ouvre le détail d’un item (profil ou fiche produit).
+# Scénario 3 : Ouverture du détail d’un item
+
+Le détail d’un item (profil ou fiche produit) est ouvert avec succès, et les informations correspondantes sont affichées correctement.
 
 ![](https://github.com/user-attachments/assets/450097f0-2a04-4889-9ed3-b2bdf5399ea8)
 
-# Étape 6 : Lire Android Security
+# Étape 6 : Lecture et analyse de la sécurité Android
 
 ![](https://github.com/user-attachments/assets/ed786c50-b9af-4543-90d8-605cf1038b5c)
 
-	
-1. Android offre une sécurité robuste dès la première utilisation.	
-2. Chaque application fonctionne dans sa propre sandbox, isolée des autres apps.	
-3. Les permissions contrôlent l’accès aux données sensibles et aux fonctionnalités du système.	
-4. Le système protège les fichiers et le système global contre les modifications non autorisées.	
-5. Les bulletins de sécurité et mises à jour corrigent régulièrement les vulnérabilités.	
-6. Les tests et bonnes pratiques garantissent la sécurité de la plateforme et de l’écosystème Android.	
+À partir de la documentation Android Security, plusieurs points clés peuvent être retenus :
 
+1. Android offre un haut niveau de sécurité dès la première utilisation.
+
+2. Chaque application fonctionne dans une sandbox, ce qui garantit l’isolation entre les applications.
+
+3. Le système de permissions contrôle l’accès aux données sensibles et aux fonctionnalités critiques.
+
+4. Le système Android protège les fichiers et le système global contre les modifications non autorisées.
+
+5. Les mises à jour et bulletins de sécurité corrigent régulièrement les vulnérabilités.
+
+6. Les tests de sécurité et les bonnes pratiques contribuent à la protection de l’écosystème Android.
 
 
