@@ -1,17 +1,30 @@
+
+# LAB2 – Test de Root et Sécurité Android
+
 # Étape 1 : Rooter l’AVD
 
-Ouvre ton AVD dans Android Studio.
+Dans cette étape, j’ai démarré un AVD via Android Studio et vérifié qu’il est bien détecté par ADB.
+
 ![](https://github.com/user-attachments/assets/4f334df2-b283-434d-8f07-495d4ce03b64)
 
- la commande adb shell id montrant uid=0(root).
+ La commande adb shell id affiche uid=0(root), ce qui confirme que l’émulateur fonctionne avec des privilèges root.
+Cela permet d’observer l’impact du root sur la sécurité du système Android dans un environnement de test contrôlé.
 
 # Étape 2 : Fiche périmètre
+
+Cette fiche définit clairement le cadre du test afin d’éviter toute ambiguïté.
+L’application testée est une application de démonstration (Hello Android).
+Le support utilisé est un AVD (émulateur Android).
+L’objectif est de comprendre le rooting et ses impacts sur la sécurité.
+Les données utilisées sont fictives et le réseau est un réseau de test.
  
 ![](https://github.com/user-attachments/assets/498e52af-7d9a-4e0f-ae85-b6d11a86b260)
 
 # Étape 3 : Démarrer un AVD propre
 
-Dans Android Studio → Device Manager → Start AVD.
+Un AVD propre a été démarré depuis le gestionnaire de périphériques d’Android Studio.
+Aucun compte personnel ni application externe n’est présent sur l’émulateur.
+Cette étape est importante pour garantir des résultats fiables et éviter toute interférence avec d’anciens tests.
 
 ![](https://github.com/user-attachments/assets/6e965d24-74a4-4e5b-96bc-b942b760cf33)
 
@@ -19,10 +32,14 @@ Dans Android Studio → Device Manager → Start AVD.
 
 # Étape 4 : Installer et lancer l’app
 
+L’application a été installée sur l’AVD à l’aide de la commande adb install app-debug.apk.
+L’installation s’est terminée avec succès.
+L’application se lance correctement et affiche l’écran principal avec le message Hello Android!.
+Cela confirme que l’environnement de test fonctionne correctement.
+
 ![](https://github.com/user-attachments/assets/27549cf6-abd4-49c8-9d72-5541fc745a6a)
 
 ![](https://github.com/user-attachments/assets/f9d98641-080a-4226-9a3a-c850190a725b)
-
 
 # Étape 5 : Faire 3 scénarios simples
 
