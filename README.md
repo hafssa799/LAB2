@@ -12,11 +12,8 @@ Cela permet d’observer l’impact du root sur la sécurité du système Androi
 
 # Étape 2 : Fiche périmètre
 
-Cette étape consiste à définir clairement le périmètre du test afin d’éviter toute ambiguïté ou mauvaise interprétation des résultats.
-L’application testée est une application de démonstration intitulée Hello Android.
-Le support utilisé est un AVD (Android Virtual Device), et l’objectif principal est de comprendre le fonctionnement du rooting ainsi que ses impacts sur la sécurité Android.
-
-Les données utilisées sont entièrement fictives et les tests sont réalisés sur un réseau de test, garantissant ainsi un cadre sécurisé et sans conséquences réelles.
+Le test concerne l’application de démonstration Hello Android.
+Il est réalisé sur un AVD avec des données fictives et un réseau de test.
  
 ![](https://github.com/user-attachments/assets/498e52af-7d9a-4e0f-ae85-b6d11a86b260)
 
