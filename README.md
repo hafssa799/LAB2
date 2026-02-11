@@ -1,7 +1,7 @@
 
 # LAB2 – Test de Root et Sécurité Android
 
-# Étape 1 : Rooter l’AVD
+# 1 : Rooter l’AVD
 
 Dans cette étape, j’ai démarré un AVD via Android Studio et vérifié qu’il est bien détecté par ADB.
 
@@ -10,14 +10,14 @@ Dans cette étape, j’ai démarré un AVD via Android Studio et vérifié qu’
  La commande adb shell id affiche uid=0(root), ce qui confirme que l’émulateur fonctionne avec des privilèges root.
 Cela permet d’observer l’impact du root sur la sécurité du système Android dans un environnement de test contrôlé.
 
-# Étape 2 : Fiche périmètre
+#  2 : Fiche périmètre
 
 Le test concerne l’application de démonstration Hello Android.
 Il est réalisé sur un AVD avec des données fictives et un réseau de test.
  
 ![](https://github.com/user-attachments/assets/498e52af-7d9a-4e0f-ae85-b6d11a86b260)
 
-# Étape 3 : Démarrer un AVD propre
+#  3 : Démarrer un AVD propre
 
 Un AVD propre a été lancé depuis le gestionnaire de périphériques d’Android Studio.
 Aucun compte personnel ni application externe n’a été configuré sur l’émulateur.
@@ -28,7 +28,7 @@ Cette étape est essentielle pour garantir la fiabilité des résultats, car ell
 
 ![](https://github.com/user-attachments/assets/f8d5aa6e-ff71-42a8-88b5-de0997051cb4)
 
-# Étape 4 : Installer et lancer l’app
+#  4 : Installer et lancer l’app
 
 L’application a été installée sur l’AVD à l’aide de la commande suivante :
 adb install app-debug.apk
@@ -39,7 +39,7 @@ Après le lancement de l’application, l’écran principal s’affiche correct
 
 ![](https://github.com/user-attachments/assets/f9d98641-080a-4226-9a3a-c850190a725b)
 
-# Étape 5 : Réalisation de trois scénarios simples
+#  5 : Réalisation de trois scénarios simples
 
 # Scénario 1 : Ouverture de l’écran d’accueil
 
@@ -61,7 +61,7 @@ Le détail d’un item (profil ou fiche produit) est ouvert avec succès, et les
 
 ![](https://github.com/user-attachments/assets/450097f0-2a04-4889-9ed3-b2bdf5399ea8)
 
-# Étape 6 : Lecture et analyse de la sécurité Android
+#  6 : Lecture et analyse de la sécurité Android
 
 ![](https://github.com/user-attachments/assets/ed786c50-b9af-4543-90d8-605cf1038b5c)
 
@@ -79,7 +79,7 @@ Le détail d’un item (profil ou fiche produit) est ouvert avec succès, et les
 
 6. Les tests de sécurité et les bonnes pratiques contribuent à la protection de l’écosystème Android.
 
-# Étape 7 : Verified Boot (analyse sur AVD)
+#  7 : Verified Boot (analyse sur AVD)
 
 L’objectif principal de Verified Boot est de garantir que le système Android qui démarre est authentique, c’est‑à‑dire celui prévu par le fabricant, sans modification malveillante du système ou du noyau.
 
@@ -110,7 +110,7 @@ Yellow / Orange : système modifié mais fonctionnel
 
 Red : intégrité compromise, démarrage dangereux
 
-# Étape 8 : AVB (Android Verified Boot)
+#  8 : AVB (Android Verified Boot)
 
 AVB (Android Verified Boot) est l’évolution moderne de Verified Boot.
 Il apporte une vérification d’intégrité plus robuste et une protection contre le rollback, empêchant l’installation d’anciennes versions vulnérables du système.
@@ -135,7 +135,7 @@ Le mode fastboot n’est pas supporté par l’AVD.
 Cette commande fonctionne uniquement sur un appareil Android physique connecté en mode bootloader.
 Sur AVD, l’absence de réponse est normale et attendue.
 
-# Étape 9 : Définition du Rooting
+# 9 : Définition du Rooting
 
 Le rooting correspond à l’obtention des privilèges super‑utilisateur (root) sur Android.
 Cela modifie profondément les protections du système et remet en cause la confiance globale du modèle de sécurité Android.
@@ -154,7 +154,7 @@ uid=0(root) gid=0(root) groups=0(root) ...
 
 Cela confirme que l’émulateur fonctionne avec les droits root actifs.
 
-# Étape 10 : Intérêt du laboratoire (environnement non opérationnel)
+#  10 : Intérêt du laboratoire (environnement non opérationnel)
 
 En laboratoire, un environnement privilégié permet d’observer et d’analyser des comportements du système Android qui sont normalement inaccessibles dans un contexte utilisateur standard.
 L’accès root facilite l’observation d’artefacts système, l’analyse du comportement runtime des applications à bas niveau et l’évaluation de la robustesse des mécanismes de stockage face à un attaquant disposant de privilèges élevés.
@@ -172,7 +172,7 @@ Ces tests sont réalisés uniquement dans un laboratoire autorisé, sur des donn
 Dans certains pays, le rooting peut violer les conditions d’utilisation du fabricant ou des lois relatives à la protection des mesures techniques.
 Il est impératif de disposer d’une autorisation explicite avant toute expérimentation de ce type.
 
-# Étape 11 : Matrice de risques
+#  11 : Matrice de risques
 
 Chaque risque identifié dans un laboratoire de sécurité doit être associé à une mesure d’atténuation appropriée, conformément aux principes de la gestion des risques en cybersécurité.
 
@@ -192,7 +192,7 @@ Chaque risque identifié dans un laboratoire de sécurité doit être associé �
 
 8. Traçabilité insuffisante → rend impossible l’audit ou la reproduction des tests.
 
-# Étape 12 : Mesures défensives
+#  12 : Mesures défensives
 
 Les mesures suivantes sont mises en place pour réduire les risques identifiés et garantir un cadre expérimental sécurisé :
 
@@ -212,7 +212,7 @@ Les mesures suivantes sont mises en place pour réduire les risques identifiés 
 
 8. Horodatage et captures des étapes clés pour garantir une traçabilité complète.
 
-# Étape 13 : OWASP MASVS
+#  13 : OWASP MASVS
 
 # Objectif : Connaître les standards de sécurité des applications mobiles.
 
@@ -229,7 +229,7 @@ Le stockage interne (/data/data/[package_name]/) pour détecter des données sen
 
 Le trafic réseau pour s’assurer que les communications sont sécurisées (TLS).
 
-# Étape 14 : OWASP MASTG
+#  14 : OWASP MASTG
 
 # Objectif : Démontrer comment tester concrètement les exigences MASVS.
 
@@ -250,7 +250,7 @@ Utiliser adb logcat pour détecter des fuites d’informations sensibles pendant
 Astuce technique :
 Le root permet d’accéder au dossier /data/data/ normalement protégé, ce qui facilite l’inspection directe des données privées des applications.
 
-# Étape 15 : Commandes de rooting (rappel synthèse)
+#  15 : Commandes de rooting (rappel synthèse)
 
 # Objectif : Résumer les commandes essentielles pour travailler en environnement root.
 
