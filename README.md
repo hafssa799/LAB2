@@ -79,4 +79,212 @@ Le détail d’un item (profil ou fiche produit) est ouvert avec succès, et les
 
 6. Les tests de sécurité et les bonnes pratiques contribuent à la protection de l’écosystème Android.
 
+# Étape 7 : Verified Boot (analyse sur AVD)
+
+L’objectif principal de Verified Boot est de garantir que le système Android qui démarre est authentique, c’est‑à‑dire celui prévu par le fabricant, sans modification malveillante du système ou du noyau.
+
+Notion de Chain of Trust
+
+La chain of trust est une chaîne de vérifications successives où chaque composant du démarrage vérifie l’authenticité du suivant avant de lui donner le contrôle.
+Si un maillon échoue, le démarrage est bloqué ou signalé comme non sûr.
+
+Importance de l’intégrité au démarrage
+
+L’intégrité au démarrage est critique car si le processus de boot est compromis, toutes les protections de sécurité mises en place après peuvent être contournées, comme une forteresse dont la porte principale serait ouverte.
+
+Vérification sur l’AVD
+
+![](https://github.com/user-attachments/assets/ad9aa1e4-6058-4769-8336-940648437b89)
+
+Résultat observé :(aucune sortie)
+
+Interprétation
+
+Sur un AVD Android Studio, cette propriété n’est pas définie.
+Les images AVD sont déverrouillées et rootées par défaut, et Verified Boot n’y est pas activé.
+Sur un appareil physique avec une image système signée, le résultat attendu serait :
+
+Green : système vérifié et intègre
+
+Yellow / Orange : système modifié mais fonctionnel
+
+Red : intégrité compromise, démarrage dangereux
+
+# Étape 8 : AVB (Android Verified Boot)
+
+AVB (Android Verified Boot) est l’évolution moderne de Verified Boot.
+Il apporte une vérification d’intégrité plus robuste et une protection contre le rollback, empêchant l’installation d’anciennes versions vulnérables du système.
+
+Protection anti‑rollback
+
+La protection anti‑rollback empêche l’installation d’anciennes versions du système pouvant contenir des failles connues.
+C’est comparable au fait d’empêcher quelqu’un de remplacer une serrure moderne par une ancienne plus facile à forcer.
+
+Test AVB
+
+![](https://github.com/user-attachments/assets/d43e1580-2cc8-44be-bb4c-076674fa5457)
+
+
+Résultat observé :
+
+< waiting for any device >
+
+Interprétation
+
+Le mode fastboot n’est pas supporté par l’AVD.
+Cette commande fonctionne uniquement sur un appareil Android physique connecté en mode bootloader.
+Sur AVD, l’absence de réponse est normale et attendue.
+
+# Étape 9 : Définition du Rooting
+
+Le rooting correspond à l’obtention des privilèges super‑utilisateur (root) sur Android.
+Cela modifie profondément les protections du système et remet en cause la confiance globale du modèle de sécurité Android.
+En laboratoire, le rooting est utile pour observer certains comportements internes et tester la sécurité.
+Cependant, il est risqué et nécessite un environnement isolé, une traçabilité stricte et un reset après les tests.
+
+Vérification du root sur l’AVD
+
+Commande exécutée :
+
+![](https://github.com/user-attachments/assets/e3473e40-08c9-42b7-bd4d-2b0eccb9303d)
+
+Résultat observé :
+
+uid=0(root) gid=0(root) groups=0(root) ...
+
+Cela confirme que l’émulateur fonctionne avec les droits root actifs.
+
+# Étape 10 : Intérêt du laboratoire (environnement non opérationnel)
+
+En laboratoire, un environnement privilégié permet d’observer et d’analyser des comportements du système Android qui sont normalement inaccessibles dans un contexte utilisateur standard.
+L’accès root facilite l’observation d’artefacts système, l’analyse du comportement runtime des applications à bas niveau et l’évaluation de la robustesse des mécanismes de stockage face à un attaquant disposant de privilèges élevés.
+
+# Cas d’usage concret
+
+Par exemple, avec les privilèges root, il est possible d’examiner la manière dont une application stocke ses données sensibles.
+Cette analyse permet de vérifier si l’application repose uniquement sur la protection du système Android (mauvaise pratique) ou si elle implémente son propre mécanisme de chiffrement (bonne pratique).
+
+# Cadre strict :
+Ces tests sont réalisés uniquement dans un laboratoire autorisé, sur des données fictives et des environnements dédiés.
+
+# Contexte légal
+
+Dans certains pays, le rooting peut violer les conditions d’utilisation du fabricant ou des lois relatives à la protection des mesures techniques.
+Il est impératif de disposer d’une autorisation explicite avant toute expérimentation de ce type.
+
+# Étape 11 : Matrice de risques
+
+Chaque risque identifié dans un laboratoire de sécurité doit être associé à une mesure d’atténuation appropriée, conformément aux principes de la gestion des risques en cybersécurité.
+
+1. Intégrité non garantie → peut conduire à des conclusions biaisées sur la sécurité réelle de l’application.
+
+2. Surface d’attaque accrue → un appareil sortant du labo peut être exposé à des menaces externes.
+
+3. Données sensibles exposées → risque de violation de la confidentialité si des données réelles sont présentes.
+
+4. Instabilité du système → peut rendre les tests non reproductibles et incohérents.
+
+5. Mélange comptes personnels / tests → entraîne un risque de fuite d’informations privées.
+
+6. Nettoyage insuffisant en fin de séance → persistance de données sensibles après les tests.
+
+7. Réseau non isolé → peut impacter involontairement des systèmes externes.
+
+8. Traçabilité insuffisante → rend impossible l’audit ou la reproduction des tests.
+
+# Étape 12 : Mesures défensives
+
+Les mesures suivantes sont mises en place pour réduire les risques identifiés et garantir un cadre expérimental sécurisé :
+
+1. Réseau isolé afin d’éviter toute communication non contrôlée.
+
+2. Utilisation exclusive de données fictives pour éliminer tout risque de fuite réelle.
+
+3. AVD ou appareil dédié uniquement aux tests de sécurité.
+
+4. Snapshots ou réinitialisation complète en fin de séance pour ne laisser aucune trace.
+
+5. Journal de configuration détaillé afin d’assurer la reproductibilité des tests.
+
+6. Aucun compte personnel configuré pour éviter tout mélange de données.
+
+7. Contrôle strict des APK installées afin de limiter la surface d’attaque.
+
+8. Horodatage et captures des étapes clés pour garantir une traçabilité complète.
+
+# Étape 13 : OWASP MASVS
+
+# Objectif : Connaître les standards de sécurité des applications mobiles.
+
+Exigences testées :
+
+STORAGE-1 : Les données sensibles (mots de passe, tokens, clés API) doivent être stockées de manière sécurisée en utilisant un chiffrement approprié.
+
+NETWORK-1 : Les communications réseau doivent utiliser TLS avec une configuration correcte et vérifier les certificats.
+
+Application pratique sur l’AVD :
+Grâce aux privilèges root sur l’émulateur, il est possible de vérifier si l’application respecte ces exigences en examinant :
+
+Le stockage interne (/data/data/[package_name]/) pour détecter des données sensibles non chiffrées.
+
+Le trafic réseau pour s’assurer que les communications sont sécurisées (TLS).
+
+# Étape 14 : OWASP MASTG
+
+# Objectif : Démontrer comment tester concrètement les exigences MASVS.
+
+Relation MASVS-MASTG :
+
+MASVS indique quoi vérifier.
+
+MASTG explique comment le vérifier.
+
+# Idées de tests pratiques :
+
+1. Vérification des fichiers de préférences partagées :
+Inspecter /data/data/[package_name]/shared_prefs/ pour détecter des informations sensibles en clair (mots de passe, tokens, clés API).
+
+2. Analyse des logs de l’application :
+Utiliser adb logcat pour détecter des fuites d’informations sensibles pendant l’exécution.
+
+Astuce technique :
+Le root permet d’accéder au dossier /data/data/ normalement protégé, ce qui facilite l’inspection directe des données privées des applications.
+
+# Étape 15 : Commandes de rooting (rappel synthèse)
+
+# Objectif : Résumer les commandes essentielles pour travailler en environnement root.
+
+Commandes ADB principales :
+
+adb devices
+adb root
+adb remount
+adb shell id
+adb shell getprop ro.boot.veritymode
+adb shell getprop ro.boot.vbmeta.device_state
+adb shell "su -c id"
+
+
+Guide de dépannage :
+
+Si adb root échoue avec « adbd cannot run as root in production builds », utilisez un émulateur ou un appareil de laboratoire spécialement configuré pour le root.
+
+Options permissives pour tests en labo :
+
+adb disable-verity      # Désactiver dm-verity
+adb reboot              # Redémarrer l'appareil
+adb remount             # Remonter les partitions après redémarrage
+adb logcat -d | tail -n 200 > logcat_root_check.txt
+
+
+Explication technique :
+Désactiver dm-verity permet de modifier les partitions système normalement en lecture seule, comme désactiver l’alarme avant d’ouvrir un coffre-fort.
+
+Commandes Fastboot (labo uniquement) :
+
+fastboot oem device-info
+fastboot getvar avb_boot_state
+fastboot boot magisk_patched.img    # Boot temporaire, pas de flash
+
+   
 
